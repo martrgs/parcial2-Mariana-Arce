@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Médico</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-verde mb-4"><div class="container"><span class="navbar-brand text-white">Consultas Medicas</span></div></nav>
+<main class="container py-3">
+    <header class="topbar">
+        <div>
+            <span class="badge-role">MÉDICO</span>
+            <h1 class="h2 mt-2 titulo-panel">Mis consultas</h1>
+            <p>Sesión: <strong id="usuarioActual"></strong></p>
+        </div>
+        <button class="btn btn-outline-danger" onclick="logout()">Cerrar sesión</button>
+    </header>
+    <div id="mensaje" class="alert alert-danger d-none"></div>
+    <section class="card card-simple bg-white p-3">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead><tr><th>Paciente</th><th>Consultorio</th><th>Horario</th><th>Médico</th><th>Acción</th></tr></thead>
+                <tbody id="tabla"></tbody>
+            </table>
+        </div>
+    </section>
+</main>
+<script src="app.js"></script>
+<script>cargarMedico();</script>
+</body>
+</html>

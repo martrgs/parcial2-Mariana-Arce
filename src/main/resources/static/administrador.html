@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Administrador</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-verde mb-4"><div class="container"><span class="navbar-brand text-white">Consultas Medicas</span></div></nav>
+<main class="container py-3">
+    <header class="topbar">
+        <div>
+            <span class="badge-role">ADMINISTRADOR</span>
+            <h1 class="h2 mt-2 titulo-panel">Gestión de consultas</h1>
+            <p>Sesión: <strong id="usuarioActual"></strong></p>
+        </div>
+        <button class="btn btn-outline-danger" onclick="logout()">Cerrar sesión</button>
+    </header>
+
+    <div id="mensaje" class="alert alert-danger d-none"></div>
+
+    <section class="card card-simple bg-white p-4 mb-4">
+        <h2 class="h5 mb-3">Registrar médico</h2>
+        <form id="formMedico" onsubmit="guardarMedico(event)">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label">Usuario</label>
+                    <input id="medicoUser" class="form-control" required>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Nombre</label>
+                    <input id="medicoNombre" class="form-control" maxlength="40" pattern="[A-Za-z0-9 ]+" required>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Contraseña</label>
+                    <input id="medicoPass" type="password" class="form-control" minlength="4" required>
+                </div>
+            </div>
+            <button class="btn btn-success mt-3" type="submit">Registrar</button>
+        </form>
+        <div class="table-responsive mt-3">
+            <table class="table table-sm table-hover mb-0">
+                <thead><tr><th>Médico</th><th>Acciones</th></tr></thead>
+                <tbody id="tablaMedicos"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="card card-simple bg-white p-4 mb-4">
+        <h2 class="h5 mb-3">Nueva consulta</h2>
+        <form id="formConsulta" onsubmit="guardarConsulta(event)">
+            <input id="consultaId" type="hidden">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Paciente</label>
+                    <select id="pacienteId" class="form-select" onchange="copiarNombrePaciente()" required></select>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Nombre del paciente</label>
+                    <input id="nombrePaciente" class="form-control" maxlength="40" pattern="[A-Za-z0-9 ]+" required>
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Motivo de la consulta</label>
+                    <input id="motivo" class="form-control" maxlength="100" required>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Consultorio</label>
+                    <input id="numeroConsultorio" type="number" min="1" class="form-control" required>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Hora inicio</label>
+                    <input id="inicio" type="time" class="form-control" required>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Hora final</label>
+                    <input id="fin" type="time" class="form-control" required>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Médico</label>
+                    <select id="medicoId" class="form-select" required></select>
+                </div>
+            </div>
+            <div class="mt-4">
+                <button class="btn btn-success" type="submit"><span id="guardarTexto">Guardar</span></button>
+                <button id="cancelarEdicion" type="button" class="btn btn-outline-secondary d-none" onclick="limpiarFormulario()">Cancelar</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="card card-simple bg-white p-3">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead><tr><th>Paciente</th><th>Consultorio</th><th>Horario</th><th>Medico</th><th>Acciones</th></tr></thead>
+                <tbody id="tabla"></tbody>
+            </table>
+        </div>
+    </section>
+</main>
+<script src="app.js"></script>
+<script>cargarAdministrador();</script>
+</body>
+</html>
