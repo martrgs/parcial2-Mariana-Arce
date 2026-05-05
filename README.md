@@ -3,7 +3,7 @@
 Base de datos en PostgreSQL:
 
 ```sql
-CREATE DATABASE consultas_medicas;
+CREATE DATABASE consultasMedicas;
 
 CREATE TABLE IF NOT EXISTS roles (
     id BIGINT PRIMARY KEY,
